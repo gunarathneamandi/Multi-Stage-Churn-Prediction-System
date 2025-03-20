@@ -1,0 +1,107 @@
+.churn-form-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh; /* Ensure the container takes up the full viewport height */
+  background-color: #e0e0e0; /* Light gray background */
+  padding: 0; /* Remove padding to let the form take up the whole window */
+}
+
+.churn-form {
+  background: #fff;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  max-width: 1000px; /* Max width, so it doesn't stretch too wide on large screens */
+  width: 100%;
+  height: 90%; /* Take up most of the vertical space */
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow-y: auto; /* Allow scrolling if content overflows */
+}
+
+.form-title {
+  font-size: 26px;
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.form-fields {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  overflow-y: auto; /* Allow vertical scrolling if needed */
+}
+
+.form-section {
+  flex: 1;
+  min-width: 250px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px; /* Margin for spacing between form sections */
+}
+
+.form-label {
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #555;
+}
+
+.form-input {
+  width:90%;
+  padding: 15px; /* Padding inside the input box */
+  background-color: #f1f1f1; /* Light gray input background */
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  margin-bottom: 20px; /* Added margin between input boxes */
+  transition: border-color 0.3s;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s;
+  margin-top: 15px;
+}
+
+.submit-btn:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+.submit-btn:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .churn-form {
+    padding: 20px;
+  }
+
+  .form-title {
+    font-size: 22px;
+  }
+
+  .form-fields {
+    flex-direction: column;
+  }
+
+  .form-section {
+    flex: 1;
+    min-width: 100%;
+  }
+}
