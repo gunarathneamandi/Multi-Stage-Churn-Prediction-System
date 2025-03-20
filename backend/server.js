@@ -1,38 +1,21 @@
 import express from "express";
 import cors from "cors";
-import admin from "firebase-admin";
-import fs from "fs";
-import dotenv from "dotenv";
-dotenv.config();
-
-const firebaseConfig = JSON.parse(process.env.FIREBASE_CONFIG);
-
-// Initialize Firebase Admin SDK
-const serviceAccount = JSON.parse(fs.readFileSync("./firebase-config.json"));
-
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-});
+import { loginUser } from "./auth.js";
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-// User Login Route
 app.post("/login", async (req, res) => {
-  const { idToken } = req.body; // Get Firebase Auth Token from frontend
+  const { email, password } = req.body;
+  const result = await loginUser(email, password);
 
-  try {
-    // Verify Firebase ID Token
-    const decodedToken = await admin.auth().verifyIdToken(idToken);
-    const uid = decodedToken.uid;
-    res.json({ message: "Login successful", uid });
-  } catch (error) {
-    res.status(401).json({ error: "Invalid token" });
+  if (result.error) {
+    return res.status(400).json({ error: result.error });
   }
+
+  res.json(result);
 });
 
 const PORT = 5000;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
