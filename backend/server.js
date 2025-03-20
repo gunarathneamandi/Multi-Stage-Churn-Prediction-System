@@ -2,6 +2,10 @@ import express from "express";
 import cors from "cors";
 import admin from "firebase-admin";
 import fs from "fs";
+import dotenv from "dotenv";
+dotenv.config();
+
+const firebaseConfig = JSON.parse(process.env.FIREBASE_CONFIG);
 
 // Initialize Firebase Admin SDK
 const serviceAccount = JSON.parse(fs.readFileSync("./firebase-config.json"));
